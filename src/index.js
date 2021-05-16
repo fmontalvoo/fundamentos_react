@@ -1,17 +1,3 @@
-const lenguajes = [
-    "Javascript",
-    "Dart",
-    "Python",
-    "Typescript",
-    "Java"
-]
-
-const Lenguajes = () => <ul>{
-    lenguajes.map(
-        (lenguaje, index) => <li key={index}> {lenguaje} </li>
-    )
-     }</ul>;
-
-const App = () => <div><Lenguajes /></div>;
+const App = () => <h1>¡Hola Mundo!</h1>;
 
 ReactDOM.render(<App />, document.getElementById("root"))
