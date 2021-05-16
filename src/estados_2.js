@@ -11,13 +11,25 @@ class Button extends React.Component {
         this.state = {
             counter: 0 // Establecemos un valor por defecto al counter.
         }
+
+        // Asigna un valor que no se modifique para el contexto.
+        this.updateCounter = this.updateCounter.bind(this);
+    }
+
+
+    // updateCounter = () => {
+    //     this.setState({ counter: this.state.counter + 1 });
+    // }
+    
+    updateCounter() {
+        this.setState({ counter: this.state.counter + 1 });
     }
 
     render() {
         return (
             <div>
                 <p>Contador: {this.state.counter}</p>
-                <button onClick={() => this.setState({ counter: this.state.counter + 1 })}>+</button>
+                <button onClick={this.updateCounter}>+</button>
             </div>
         );
     }
