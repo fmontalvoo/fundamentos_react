@@ -1,3 +1,5 @@
+// Reemplazar este codigo en index.js
+
 const lenguajes = [
     "Javascript",
     "Dart",
