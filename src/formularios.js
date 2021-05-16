@@ -1,10 +1,20 @@
 // Reemplazar este codigo en index.js
 
 // Componente que renderiza el formulario.
-const Form = () => {
+const Form = ({ show = false }) => {
 
     // Variables para manejar el estado del formulario.
     const [form, setState] = React.useState({ title: '', body: '' })
+
+    const inputTitle = React.useRef(); // Guarda referencia a un elemento del DOM.
+
+    React.useEffect(
+        () => {
+            // Envia el foco del cursor hacia el primer input del formulario.
+            inputTitle.current.focus();
+        },
+        [show] // Escucha unicamente los cambios de la variable show.
+    );
 
     // Esta funciop es llamada al enviar el formulario.
     const submitForm = (evt) => {
@@ -34,7 +44,7 @@ const Form = () => {
         <form onSubmit={submitForm}>
             <div>
                 <label htmlFor="title">Titulo: </label>
-                <input id="title" type="text" value={form.title}
+                <input id="title" type="text" value={form.title} ref={inputTitle}
                     onChange={evt => setState({ title: evt.target.value, body: form.body })} />
             </div>
             <br />
@@ -49,7 +59,21 @@ const Form = () => {
     );
 }
 
+const ShowForm = () => {
 
-const App = () => <div><Form /></div>;
+    const [showForm, setState] = React.useState(false);
+
+    return (
+        <div>
+            <button onClick={() => setState(true)} >Mostrar formulario</button>
+            <br />
+            <br />
+            <br />
+            {showForm && <Form show={showForm} />}
+        </div>
+    );
+}
+
+const App = () => <div><ShowForm /></div>;
 
 ReactDOM.render(<App />, document.getElementById("root"))
